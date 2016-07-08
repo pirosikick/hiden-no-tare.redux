@@ -6,7 +6,7 @@ const Wrapper = () =>
       <title>Hello</title>
     </head>
     <body>
-      hello
+      <div id="app"></div>
       <script src="scripts/client.bundle.js"></script>
     </body>
   </html>;
