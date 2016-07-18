@@ -2,6 +2,7 @@
   "presets": ["es2015", "react"],
   "env": {
     "development": {
+      "sourceMaps": "inline",
       "plugins": [
         ["react-transform", {
           "transforms": [{
