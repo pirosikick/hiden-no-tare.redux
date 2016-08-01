@@ -1,2 +1,4 @@
-export const addTask = message => ({ type: 'ADD_TASK', message });
-export const removeTask = index => ({ type: 'REMOVE_TASK', index });
+import { createAction } from 'redux-actions';
+
+export const addTask = createAction('ADD_TASK');
+export const removeTask = createAction('REMOVE_TASK');

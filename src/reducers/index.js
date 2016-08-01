@@ -1,15 +1,11 @@
 import { combineReducers } from 'redux';
+import { handleActions } from 'redux-actions';
 import { List } from 'immutable';
+import * as actions from '../actions';
 
-const tasks = (state = new List(), action) => {
-  switch (action.type) {
-    case 'ADD_TASK':
-      return state.push(action.message);
-    case 'REMOVE_TASK':
-      return state.delete(action.index);
-    default:
-      return state;
-  }
-};
+const tasks = handleActions({
+  [actions.addTask]: (state, action) => state.push(action.message),
+  [actions.removeTask]: (state, action) => state.delete(action.index),
+}, new List());
 
 export default combineReducers({ tasks });
