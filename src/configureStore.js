@@ -1,11 +1,16 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducers from './reducers';
+import thunkMiddleware from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 export default function configureStore(initialState = {}) {
   const store = createStore(
     reducers,
     initialState,
-    window.devToolsExtension && window.devToolsExtension()
+    compose(
+      applyMiddleware(thunkMiddleware, promiseMiddleware),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
   );
 
   if (module.hot) {

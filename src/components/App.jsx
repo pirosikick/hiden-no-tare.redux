@@ -22,6 +22,10 @@ export class App extends Component {
 
   render() {
     const { tasks } = this.props;
+    const lists = tasks.map((task, i) =>
+      <li key={i}>{task}</li>
+    );
+  
     return (
       <div className="app">
         <h1>Hello! app!</h1>
@@ -29,9 +33,7 @@ export class App extends Component {
           <input type="text" ref="message" />
           <button>Add</button>
         </form>
-        <ul>
-          {tasks.map(task => <li>{task}</li>)}
-        </ul>
+        <ul>{lists}</ul>
       </div>
     );
   }
