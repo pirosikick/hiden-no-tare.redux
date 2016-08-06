@@ -22,7 +22,7 @@
   "homepage": "https://github.com/pirosikick/hiden-no-tare.redux#readme",
   "private": true,
   "devDependencies": {
-    "ava": "^0.15.2",
+    "ava": "^0.16.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-runtime": "^6.12.0",
