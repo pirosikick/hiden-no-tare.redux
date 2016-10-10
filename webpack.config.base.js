@@ -49,7 +49,7 @@ function getConfig(env) {
     module: {
       loaders: [
         {
-          loader: 'babel',
+          loader: 'babel?cacheDirectory',
           test: /\.jsx?$/,
           exclude: /node_modules/,
         },
