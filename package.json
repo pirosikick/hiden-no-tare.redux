@@ -40,7 +40,7 @@
     "redux-devtools": "^3.3.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.13.0"
   },
   "dependencies": {
     "babel-cli": "^6.11.4",
