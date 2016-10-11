@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
-    "start": "nodemon src/server/start.js"
+    "start": "nodemon src/server/start.js",
+    "lint": "eslint src test",
+    "lint-staged": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -23,22 +25,65 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-actions": "^0.12.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "babel-cli": "^6.16.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.16.3",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.0",
+    "lint-staged": "^3.0.3",
     "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.0",
+    "nyc": "^8.3.1",
+    "pre-commit": "^1.1.3",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2"
+  },
+  "babel": {
+    "presets": ["es2015", "react"],
+    "plugins": ["transform-runtime", "transform-object-rest-spread"]
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2015,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true
+      }
+    }
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.@(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
