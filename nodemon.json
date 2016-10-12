@@ -1,6 +1,6 @@
 {
   "watch": [
-    "src"
+    "src/server/"
   ],
   "execMap": {
     "js": "babel-node"

@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/pirosikick/hiden-no-tare.redux#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "co": "^4.6.0",
     "express": "^4.14.0",
     "express-react-views": "^0.10.2",
+    "fetchr": "^0.5.36",
+    "node-fetch": "^1.6.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
@@ -54,8 +58,14 @@
     "webpack-dev-server": "^1.16.2"
   },
   "babel": {
-    "presets": ["es2015", "react"],
-    "plugins": ["transform-runtime", "transform-object-rest-spread"]
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "transform-object-rest-spread"
+    ]
   },
   "eslintConfig": {
     "extends": "airbnb",
