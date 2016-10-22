@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import { createEngine } from 'express-react-views';
 import bodyParser from 'body-parser';
-import { middleware as fetchrMiddleware } from './fetchr';
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -16,7 +15,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(path.resolve(__dirname, '../..', 'dist')));
 app.use(bodyParser.json());
-app.use('/api-proxy', fetchrMiddleware());
 app.use((req, res) => {
   res.render('html', {
     env: process.env.NODE_ENV || 'development',
