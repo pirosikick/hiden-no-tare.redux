@@ -1,23 +1,31 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import reducers from './reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
+import reducers from './reducers';
 
-export default function configureStore(initialState = {}) {
-  const store = createStore(
-    reducers,
-    initialState,
-    compose(
-      applyMiddleware(thunkMiddleware, promiseMiddleware),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+function configureStore(initialState = {}) {
+  let middlewares = applyMiddleware(
+    thunkMiddleware,
+    promiseMiddleware
   );
 
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      // eslint-disable-next-line global-require
-      store.replaceReducer(require('./reducers'));
-    });
+  if (process.env.NODE_ENV === 'production' && window.devToolsExtension) {
+    middlewares = compose(
+      middlewares,
+      window.devToolsExtension()
+    );
   }
-  return store;
+
+  return createStore(reducers, initialState, middlewares);
+
+  // for HMR
+  // const store = createStore(reducers, initialState, middlewares);
+  // if (module.hot) {
+  //   module.hot.accept('./reducers', () => {
+  //     store.replaceReducer(require('./reducers'));
+  //   });
+  // }
+  // return store;
 }
+
+export default configureStore;

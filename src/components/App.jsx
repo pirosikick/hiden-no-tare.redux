@@ -1,52 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Story from './Story';
 
-export class App extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const message = this.getMessage();
-    if (message) {
-      this.props.onAdd(message);
-    }
-  }
-
-  getMessage() {
-    return this.refs.message.value;
-  }
-
-  render() {
-    const { tasks } = this.props;
-    const lists = tasks.map((task, i) =>
-      <li key={i}>{task}</li>
-    );
-  
-    return (
-      <div className="app">
-        <h1>Hello! app!</h1>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" ref="message" />
-          <button>Add</button>
-        </form>
-        <ul>{lists}</ul>
-      </div>
-    );
-  }
-}
-
+const App = ({ news }) => (
+  <div>
+    <h1>Hello, World!</h1>
+    <h2>New</h2>
+    <ul>
+      {news.map(n => <li key={n}><Story id={n} /></li>)}
+    </ul>
+  </div>
+);
 App.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onAdd: PropTypes.func.isRequired,
+  news: PropTypes.arrayOf(PropTypes.number),
 };
 
-const mapStateToProps = state => ({ tasks: state.tasks.toArray() });
-const mapDispatchToProps = dispatch => ({
-  onAdd: message => dispatch({ type: 'ADD_TASK', message }),
+const mapStateToProps = state => ({
+  news: state.app.get('newStories'),
+  tops: state.app.get('topStories'),
 });
+const Container = connect(mapStateToProps)(App);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default Container;

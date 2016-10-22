@@ -1,3 +1,6 @@
-# hiden-no-tare.redux
+hiden-no-tare.redux
+===================
 
-@pirosikick's secret sause of redux
+The secret sauce of React & Redux web application, which was made by [@pirosikick](https://github.com/pirosikick)
+
+
