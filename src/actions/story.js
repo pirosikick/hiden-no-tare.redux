@@ -1,14 +1,24 @@
 import { createAction } from 'redux-actions';
-import Fetcher from 'fetchr';
+import { readTopStories, readNewStories } from '../api-client';
+import { fetchItems } from './item';
 
-// [TODO]
-const fetcher = new Fetcher({ xhrPath: '/api-proxy' });
+export const fetchedNew = createAction('FETCHED_NEW_STORIES');
+export const fetchedTop = createAction('FETCHED_TOP_STORIES');
 
-const fetchNew = createAction('FETCHED_NEW_STORIES', () => (
-  fetcher.read('stories.new', {}).then(({ data }) => data)
-));
-const fetchTop = createAction('FETCHED_TOP_STORIES', () => (
-  fetcher.read('stories.top', {}).then(({ data }) => data)
-));
+export function fetchNew() {
+  return dispatch => {
+    readNewStories().then(ids => {
+      dispatch(fetchedNew(ids));
+      dispatch(fetchItems(ids));
+    });
+  };
+}
 
-export { fetchNew, fetchTop };
+export function fetchTop() {
+  return dispatch => {
+    readTopStories().then(ids => {
+      dispatch(fetchedTop(ids));
+      dispatch(fetchItems(ids));
+    });
+  };
+}

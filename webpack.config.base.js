@@ -3,7 +3,7 @@ const webpack = require('webpack'); // eslint-disable-line
 
 function getConfig(env) {
   const entry = {
-    client: ['./src/client.jsx'],
+    client: ['babel-polyfill', 'isomorphic-fetch', './src/client.jsx'],
   };
   const output = {
     path: path.join(__dirname, '.tmp', 'scripts'),
@@ -44,6 +44,7 @@ function getConfig(env) {
   }
 
   return {
+    devtool: 'source-map',
     entry,
     output,
     module: {
